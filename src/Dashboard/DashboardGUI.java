@@ -1,4 +1,4 @@
-package instructor_interface;
+package Dashboard;
 
 import Login.Login;
 import Main.Courses_Grades;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 
 
-public class InstructorGUI extends JFrame {
+public class DashboardGUI extends JFrame {
     private JPanel panelHeader;
     private JPanel panelWindow;
     private JLabel labelHello;
@@ -24,12 +24,13 @@ public class InstructorGUI extends JFrame {
     private JLabel labelIcon;
     private JPanel panelStudents;
     private JPanel panelDetails;
-    private JLabel labelDetails;
     private JPanel panelBodyDetails;
+    private JPanel asidePanel;
+    private JLabel asideHeaderLabel;
 
     private Person clickedStudent;
     private boolean isInstructorUI;
-    public InstructorGUI(Person chosen, ArrayList<Student> StudentsList){
+    public DashboardGUI(Person chosen, ArrayList<Student> StudentsList){
         clickedStudent=chosen.isInstructor?StudentsList.get(0):chosen;
         this.isInstructorUI = chosen.isInstructor;
 
@@ -50,9 +51,8 @@ public class InstructorGUI extends JFrame {
     private void initialUI(Person chosen , Person clickedStudent ){
         setContentPane(panelWindow);
         setVisible(true);
-        System.out.println(chosen.isInstructor + " " + chosen.getName());
         setIconImage(new ImageIcon("src/images/logo.png").getImage());
-        setTitle(chosen.isInstructor?"Instructor ": "Student " + chosen.getName() + " Interface");
+        setTitle(chosen.isInstructor?"Instructor": "Student" + " " + chosen.getName() + " Interface");
         setBounds(100,100,1200,700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //        pack();
@@ -92,27 +92,28 @@ public class InstructorGUI extends JFrame {
 
     private void theBigBestDetails( Person clickedStudent) {
         //this chosen might be instructor or student
-        panelBodyDetails.setLayout(new GridLayout(clickedStudent.getCourses().size(),3));
-
+        int gridRows= clickedStudent.getCourses().size();
+        panelBodyDetails.setLayout(new GridLayout(gridRows,3)); //
         panelBodyDetails.removeAll(); // Remove all components from the panel
         panelBodyDetails.revalidate(); // Revalidate the layout
         panelBodyDetails.repaint();   // Repaint the panel to reflect the change
 
-        labelDetails.setText(this.isInstructorUI? clickedStudent.getName()+"'s Details" : "Your Details");
+        asideHeaderLabel.setText(this.isInstructorUI? clickedStudent.getName()+"'s Details" : "Your Details");
 
         ArrayList<Courses_Grades> allCourses = clickedStudent.getCourses(); //array of objects
 
-        for(Courses_Grades everyCourse : allCourses){
+        for(int i =0; i< allCourses.size(); i++){
             JPanel somePanel = new JPanel(new BorderLayout(10,2));
+            somePanel.setBackground(Color.green);
 //            ============arrow label
-            JLabel labelCounter = new JLabel(String.valueOf(everyCourse.getCourseId()+1)+"- ");
+            JLabel labelCounter = new JLabel(i+"- ");
             labelCounter.setFont(labelCounter.getFont().deriveFont(20f));
             somePanel.add(labelCounter,BorderLayout.WEST);
 //            =============panel subject
             JPanel panelSubject = new JPanel(new FlowLayout(FlowLayout.CENTER,10,10));
-            JLabel subjectName = new JLabel(everyCourse.getCourse());
-            JLabel gradePercent = new JLabel(String.valueOf(everyCourse.getGrade()));
-            JLabel gradeLetter = new JLabel("("+ String.valueOf(everyCourse.getGradeLetter()) + ")");
+            JLabel subjectName = new JLabel(allCourses.get(i).getCourse());
+            JLabel gradePercent = new JLabel(String.valueOf(allCourses.get(i).getGrade()));
+            JLabel gradeLetter = new JLabel("("+ String.valueOf(allCourses.get(i).getGradeLetter()) + ")");
 
             subjectName.setFont(subjectName.getFont().deriveFont(20f));
             gradePercent.setFont(gradePercent.getFont().deriveFont(20f));
@@ -132,10 +133,12 @@ public class InstructorGUI extends JFrame {
             somePanel.add(panelBtns,BorderLayout.EAST);
             panelBodyDetails.add(somePanel);
 //            add - edit functionality
+            int finalI = i;
             edit.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    clickedStudent.removeCourse(everyCourse.getCourseId());
+                    System.out.print(allCourses.get(finalI).getCourseId());
+                    clickedStudent.removeCourse(allCourses.get(finalI).getCourseId());
                     theBigBestDetails(clickedStudent);
                 }
             });
@@ -147,6 +150,10 @@ public class InstructorGUI extends JFrame {
         Image myUserIcon = new ImageIcon(path).getImage();
         Image scaledImage = myUserIcon.getScaledInstance(el3rd,elTol,Image.SCALE_SMOOTH);
         return new ImageIcon(scaledImage);
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 
 }

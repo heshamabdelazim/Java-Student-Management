@@ -1,0 +1,48 @@
+1- JFrame
+
+============================
+2- ImageIcon Object => new ImageIcon("logo.png")
+
+============================
+3- JLabel Object has => IconImage + text
+
+	setText("Hello Label")  
+	setIcon(new ImageIcon("logo.png"));
+	setHorizontalTextPosition(JLabel.CENTER-Right-Left);
+	setVerticalTextPosition(JLabel.CENTER-TOP-BOTTOM);
+	
+	setForGround(Color.RED);  setForGround(new Color(0,20,255))
+	setForGround(new Color(0x00FF00));
+	setBackground(Color.BLACK);
+	setOpaque(true); //will display
+	
+	setFont(new Font("Arial", Font.PLAIN , 20));
+	setIconTextGap(100);
+
+	setBorder
+============================
+4- Jpanel
+
+
+
+
+
+
+
+
+
+
+
+
+if(Ahmed && GPA>3 && lastYear){
+	//this will work if all are true
+}
+
+if(Ahmed || GPA>3 && lastYear){
+	//this will work if ahmed or GPA true    Must last year true
+}
+
+
+
+
+

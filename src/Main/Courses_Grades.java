@@ -4,21 +4,22 @@ public class Courses_Grades {
     private String subject="hello";
     private double grade=0.00;
     private static int idGenerator =0;
-    private char gradeLetter;
+    private char gradeLetter; //A ,B ,C ,D ,F
     private int courseId;
 
     public Courses_Grades(String subject, double grade){
         this.subject = subject;
         this.grade=grade;
         this.gradeLetter= calcGrade(grade);
-        this.courseId=idGenerator++;
+        this.courseId=++idGenerator;
     }
 
     public Courses_Grades(String subject){
         this.subject=subject;
+        this.courseId=++idGenerator;
     }
 
-    public char calcGrade(double x){
+    private char calcGrade(double x){
         if(x>=85){
             return 'A';
         }
@@ -48,7 +49,11 @@ public class Courses_Grades {
     }
 
     public static void main(String []args){
-        Courses_Grades x = new Courses_Grades("Math",66);
-        System.out.println(x.calcGrade(x.getGrade()));
+        Courses_Grades x = new Courses_Grades("Math",66.6);
+        System.out.println(x.getGrade());
+        System.out.println(x.getGradeLetter());
+        Courses_Grades y = new Courses_Grades("Math",85.1);
+        System.out.println(y.getGrade());
+        System.out.println(y.getGradeLetter());
     }
 }

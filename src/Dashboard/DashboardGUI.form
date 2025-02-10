@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="instructor_interface.InstructorGUI">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Dashboard.DashboardGUI">
   <grid id="27dc6" binding="panelWindow" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
@@ -99,15 +99,6 @@
           <title-color color="-2104859"/>
         </border>
         <children>
-          <component id="c92a3" class="javax.swing.JLabel" binding="labelDetails">
-            <constraints border-constraint="West"/>
-            <properties>
-              <font name="Bell MT" size="20" style="1"/>
-              <horizontalTextPosition value="11"/>
-              <text value="Label"/>
-              <verticalAlignment value="1"/>
-            </properties>
-          </component>
           <grid id="a5b86" binding="panelBodyDetails" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints border-constraint="Center"/>
@@ -116,6 +107,32 @@
             </properties>
             <border type="none"/>
             <children/>
+          </grid>
+          <grid id="56ed4" binding="asidePanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="10" left="10" bottom="10" right="10"/>
+            <constraints border-constraint="West"/>
+            <properties>
+              <background color="-4793089"/>
+              <foreground color="-1734033"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="c2b98" class="javax.swing.JLabel" binding="asideHeaderLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bell MT" size="24" style="1"/>
+                  <foreground color="-1734034"/>
+                  <text value="aside header"/>
+                </properties>
+              </component>
+              <vspacer id="1f0ad">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+            </children>
           </grid>
         </children>
       </grid>

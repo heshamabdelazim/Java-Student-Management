@@ -4,7 +4,7 @@ import Main.Courses_Grades;
 import Main.Instructor;
 import Main.Person;
 import Main.Student;
-import instructor_interface.InstructorGUI;
+import Dashboard.DashboardGUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -43,7 +43,8 @@ public class Login extends JFrame {
     public ArrayList<Instructor> Instructors = new ArrayList<Instructor>(listOfAllInstructors);
 
     public Login() {
-        System.out.println(Students.size());
+        tryUsers(Students, Instructors);
+
         ArrayList<Person> allPeople = new ArrayList<Person>(Instructors);
         allPeople.addAll(Students);
 //        ===================== Start GUI
@@ -66,7 +67,7 @@ public class Login extends JFrame {
                         chosen = allPeople.get(index);
                         labelLoginStatus.setText("login success");
 //                        setVisible(false);
-                        InstructorGUI Instructor_Interface = new InstructorGUI(chosen , Students);
+                        DashboardGUI Instructor_Interface = new DashboardGUI(chosen , Students);
                         dispose();
                     }else{
                         labelLoginStatus.setText("Sorry, Wrong user name or password");
@@ -77,7 +78,22 @@ public class Login extends JFrame {
             }
         });
 }
-
+private void tryUsers(ArrayList<Student> allStudents, ArrayList<Instructor> allInstructors){
+        final String dash= "---------------";
+        System.out.println(dash);
+        System.out.println("Try Student Accounts");
+        System.out.println(dash);
+        for(Student x: allStudents ){
+            System.out.println("User Name: "+ x.getName() + " AND Password: " + x.getPassword());
+        }
+        System.out.println(dash);
+        System.out.println("Try Instructor Accounts");
+        System.out.println(dash);
+        for(Instructor x : allInstructors){
+            System.out.println("User Name: "+ x.getName() + " AND Password: " + x.getPassword());
+        }
+        System.out.println(dash);
+}
  public static void main(String[] args){
      Login test = new Login();
  }
